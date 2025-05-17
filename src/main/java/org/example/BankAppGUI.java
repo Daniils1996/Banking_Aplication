@@ -3,13 +3,35 @@ package org.example;
 import javax.swing.*;
 
 public class BankAppGUI {
+
     private BankAccount bankAccount;
     private JLabel balanceLabel;
+
+    public BankAppGUI(BankAccount bankAccount, JLabel balanceLabel) {
+        this.bankAccount = bankAccount;
+        this.balanceLabel = balanceLabel;
+    }
+
+    public BankAccount getBankAccount() {
+        return bankAccount;
+    }
+
+    public void setBankAccount(BankAccount bankAccount) {
+        this.bankAccount = bankAccount;
+    }
+
+    public JLabel getBalanceLabel() {
+        return balanceLabel;
+    }
+
+    public void setBalanceLabel(JLabel balanceLabel) {
+        this.balanceLabel = balanceLabel;
+    }
 
 
     public BankAppGUI(){
         String name = JOptionPane.showInputDialog("Enter Account Holder: ");
-        double balance = Double.parseDouble(JOptionPane.showInputDialog("Enter Initial Bilance: "));
+        double balance = Double.parseDouble(JOptionPane.showInputDialog("Enter Initial Balance: "));
 
         bankAccount = new BankAccount(name, balance);
 
@@ -18,7 +40,7 @@ public class BankAppGUI {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(null);
 
-        balanceLabel = new JLabel("Balance" + bankAccount.getBalance());
+        JLabel balanceLabel = new JLabel("Balance: " + bankAccount.getBalance());
         balanceLabel.setBounds(50, 10, 200, 20);
         frame.add(balanceLabel);
 
