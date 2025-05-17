@@ -43,7 +43,15 @@ class BankAppGUITest {
 
     @org.junit.jupiter.api.Test
     void testInvalidDepositShowsErrorMessage() {
-        // TODO: Simulate entering invalid deposit amount
+        BankAccount account = new BankAccount("Bob",200.0);
+        JLabel label = new JLabel();
+        BankAppGUI gui = new BankAppGUI(account, label);
+
+        gui.handleDepositInput("abc");
+        gui.updateBalanceLabel();
+
+        assertEquals("Balance: 200.0", label.getText());
+
     }
 
     @org.junit.jupiter.api.Test

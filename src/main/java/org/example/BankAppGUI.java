@@ -62,20 +62,7 @@ public class BankAppGUI {
 
         depositButton.addActionListener(e -> {
             String input = JOptionPane.showInputDialog("Enter Amount to Deposit");
-                if (input != null){
-                    try {
-                        double amount = Double.parseDouble(input);
-                        if (amount <= 0){
-                            JOptionPane.showMessageDialog(null, "Please Enter positive amount! ");
-                        }else {
-                            bankAccount.deposit(amount);
-                            updateBalanceLabel();
-                        }
-                    }catch (NumberFormatException ex){
-                        JOptionPane.showMessageDialog(null, "Invalid Input. Please Enter a numeric Value");
-                    }
-            updateBalanceLabel();
-            }
+                handleDepositInput(input);
         });
 
         withdrawButton.addActionListener(e -> {
@@ -114,6 +101,24 @@ public class BankAppGUI {
     public void updateBalanceLabel(){
         balanceLabel.setText("Balance: " + bankAccount.getBalance());
     }
+
+    public String handleDepositInput(String input) {
+        if (input != null) {
+            try {
+                double amount = Double.parseDouble(input);
+                if (amount <= 0) {
+                    JOptionPane.showMessageDialog(null, "Please Enter positive amount! ");
+                } else {
+                    bankAccount.deposit(amount);
+                    updateBalanceLabel();
+                }
+            } catch (NumberFormatException ex) {
+                JOptionPane.showMessageDialog(null, "Invalid Input. Please Enter a numeric Value");
+            }
+        }
+        return "No input";
+    }
+
 
 
 }
