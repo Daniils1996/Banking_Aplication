@@ -71,7 +71,7 @@ public class BankAppGUI {
         });
 
         balanceButton.addActionListener(e -> {
-            JOptionPane.showMessageDialog(null, "Balance" + bankAccount.getBalance());
+            JOptionPane.showMessageDialog(null, "Balance: " + bankAccount.getBalance());
         });
 
         exitButton.addActionListener(e -> {

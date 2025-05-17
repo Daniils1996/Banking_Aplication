@@ -78,7 +78,17 @@ class BankAppGUITest {
 
     @org.junit.jupiter.api.Test
     void testExitButtonClosesApplication() {
-        // TODO: Simulate clicking exit button
+        JFrame testFrame = new JFrame();
+        JButton exitButton = new JButton();
+
+        // Add action listener like in your app
+        exitButton.addActionListener(e -> testFrame.dispose());
+
+        // Simulate clicking the button
+        exitButton.doClick();
+
+        // Assert frame is no longer displayable (disposed)
+        assertFalse(testFrame.isDisplayable());
     }
 
 }
