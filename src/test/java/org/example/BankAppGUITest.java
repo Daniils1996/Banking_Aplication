@@ -8,7 +8,12 @@ class BankAppGUITest {
 
     @org.junit.jupiter.api.Test
     void testInitialBalanceDisplayedCorrectly() {
+        BankAccount account = new BankAccount("Bob", 300.0);
+        JLabel label = new JLabel();
+        BankAppGUI gui = new BankAppGUI(account, label);
 
+        gui.updateBalanceLabel();
+        assertEquals("Balance: 300.0", label.getText());
     }
 
     @org.junit.jupiter.api.Test
