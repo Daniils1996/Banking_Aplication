@@ -67,22 +67,7 @@ public class BankAppGUI {
 
         withdrawButton.addActionListener(e -> {
             String input = JOptionPane.showInputDialog("Enter Amount to Withdraw");
-                if (input != null){
-                    try{
-                        double amount = Double.parseDouble(input);
-                        if (amount < 0){
-                            JOptionPane.showMessageDialog(null, "Please Enter Positive amount!");
-                        }else{
-                            bankAccount.withdraw(amount);
-                            updateBalanceLabel();
-                        }
-                    }catch (NumberFormatException ex){
-                        JOptionPane.showMessageDialog(null, "Invalid Input. Please Enter a numeric Value");
-                    }catch (IllegalArgumentException ex){
-                        JOptionPane.showMessageDialog(null, ex.getMessage());
-                    }
-                    updateBalanceLabel();
-            }
+            handleWithdrawInput(input);
         });
 
         balanceButton.addActionListener(e -> {
@@ -117,6 +102,24 @@ public class BankAppGUI {
             }
         }
         return "No input";
+    }
+
+    public void handleWithdrawInput(String input){
+        if (input != null){
+            try{
+                double amount = Double.parseDouble(input);
+                if (amount < 0){
+                    JOptionPane.showMessageDialog(null, "Please Enter Positive amount!");
+                }else{
+                    bankAccount.withdraw(amount);
+                    updateBalanceLabel();
+                }
+            }catch (NumberFormatException ex){
+                JOptionPane.showMessageDialog(null, "Invalid Input. Please Enter a numeric Value");
+            }catch (IllegalArgumentException ex){
+                JOptionPane.showMessageDialog(null, ex.getMessage());
+            }
+        }
     }
 
 

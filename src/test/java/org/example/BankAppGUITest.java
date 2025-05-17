@@ -56,12 +56,24 @@ class BankAppGUITest {
 
     @org.junit.jupiter.api.Test
     void testWithdrawWithInsufficientFundsShowsError() {
-        // TODO: Simulate withdrawing more than available
+        BankAccount account = new BankAccount("Bob", 200);
+        JLabel label = new JLabel();
+        BankAppGUI gui = new BankAppGUI(account, label);
+
+        gui.handleWithdrawInput("500");
+        gui.updateBalanceLabel();
+
+        assertEquals("Balance: 200.0", label.getText());
     }
 
     @org.junit.jupiter.api.Test
     void testCheckBalanceButtonDisplaysCorrectValue() {
-        // TODO: Simulate button click and validate message dialog
+        BankAccount account = new BankAccount("Bob", 300.0);
+        JLabel label = new JLabel();
+        BankAppGUI gui = new BankAppGUI(account, label);
+
+        gui.updateBalanceLabel();
+        assertEquals("Balance: 300.0", label.getText());
     }
 
     @org.junit.jupiter.api.Test
