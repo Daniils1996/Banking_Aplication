@@ -40,7 +40,7 @@ public class BankAppGUI {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(null);
 
-        JLabel balanceLabel = new JLabel("Balance: " + bankAccount.getBalance());
+        balanceLabel = new JLabel("Balance: " + bankAccount.getBalance());
         balanceLabel.setBounds(50, 10, 200, 20);
         frame.add(balanceLabel);
 
