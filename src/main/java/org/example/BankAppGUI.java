@@ -1,6 +1,7 @@
 package org.example;
 
 import javax.swing.*;
+import java.util.List;
 
 public class BankAppGUI {
 
@@ -84,11 +85,17 @@ public class BankAppGUI {
         });
 
         historyButton.addActionListener(e ->{
-            StringBuilder history = new StringBuilder();
-            for (String entry : bankAccount.getTransactionHistory()){
-                history.append(entry).append("\n");
+            List<String> history = bankAccount.getTransactionHistory();
+            if (history.isEmpty()){
+                JOptionPane.showMessageDialog(null,"No transactions yet!");
+            }else{
+
+            StringBuilder message = new StringBuilder("Transaction history \n");
+            for (String transaction : history){
+                message.append("- ").append(transaction).append("\n");
             }
-            JOptionPane.showMessageDialog(null,history.toString(), "Transaction History", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, message.toString());
+            }
         });
 
         frame.setVisible(true);
