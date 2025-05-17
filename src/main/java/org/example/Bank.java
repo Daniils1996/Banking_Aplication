@@ -11,24 +11,28 @@ public class Bank {
         String accountHolder = scanner.nextLine();
 
         System.out.println("Enter your balance: ");
+
         double balance = scanner.nextDouble();
+
 
         BankAccount bankAccount = new BankAccount(accountHolder, balance);
 
-        while (true){
+        while (true) {
 
             System.out.println("\n---Bank Menu---");
             System.out.println("1. Deposit.");
             System.out.println("2. Withdraw.");
             System.out.println("3. Check balance.");
-            System.out.println("4. Exit.");
+            System.out.println("4. View transaction history.");
+            System.out.println("5. Exit.");
+
 
 
             System.out.println("Choose an option: ");
 
-            int choise = scanner.nextInt();
+            int choice = scanner.nextInt();
 
-            switch (choise){
+            switch (choice) {
                 case 1:
                     System.out.println("Enter the amount to deposit: ");
                     double depositAmount = scanner.nextDouble();
@@ -43,6 +47,11 @@ public class Bank {
                     bankAccount.printBalance();
                     break;
                 case 4:
+                    System.out.println("Transaction History");
+                    for (String entry: bankAccount.getTransactionHistory()){
+                        System.out.println(entry);
+                    }
+                case 5:
                     System.out.println("Thank you for using app!");
                     return;
                 default:

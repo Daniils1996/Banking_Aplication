@@ -36,7 +36,7 @@ public class BankAppGUI {
         bankAccount = new BankAccount(name, balance);
 
         JFrame frame = new JFrame("Bank App");
-        frame.setSize(300, 240);
+        frame.setSize(300, 280);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(null);
 
@@ -56,8 +56,12 @@ public class BankAppGUI {
         balanceButton.setBounds(50, 120, 180, 30);
         frame.add(balanceButton);
 
+        JButton historyButton = new JButton("Transaction History");
+        historyButton.setBounds(50, 160, 180, 30);
+        frame.add(historyButton);
+
         JButton exitButton = new JButton("EXIT!");
-        exitButton.setBounds(50, 160, 180, 30);
+        exitButton.setBounds(50, 200, 180, 30);
         frame.add(exitButton);
 
         depositButton.addActionListener(e -> {
@@ -77,6 +81,14 @@ public class BankAppGUI {
         exitButton.addActionListener(e -> {
             JOptionPane.showMessageDialog(frame, "Goodbye");
             System.exit(0);
+        });
+
+        historyButton.addActionListener(e ->{
+            StringBuilder history = new StringBuilder();
+            for (String entry : bankAccount.getTransactionHistory()){
+                history.append(entry).append("\n");
+            }
+            JOptionPane.showMessageDialog(null,history.toString(), "Transaction History", JOptionPane.INFORMATION_MESSAGE);
         });
 
         frame.setVisible(true);
@@ -108,7 +120,7 @@ public class BankAppGUI {
         if (input != null){
             try{
                 double amount = Double.parseDouble(input);
-                if (amount < 0){
+                if (amount <= 0){
                     JOptionPane.showMessageDialog(null, "Please Enter Positive amount!");
                 }else{
                     bankAccount.withdraw(amount);

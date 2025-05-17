@@ -1,14 +1,26 @@
 package org.example;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+
 //Changes?
 public class BankAccount {
     String accountHolder;
     double balance;
-
+    LinkedList<String> transactionHistory = new LinkedList<>();
 
     public BankAccount(String accountHolder, double balance){
         this.accountHolder = accountHolder;
         this.balance = balance;
+        addTransaction("Account created with balance: " + balance);
+    }
+    public List<String> getTransactionHistory() {
+        return new ArrayList<>(transactionHistory);
+    }
+
+    public void setTransactionHistory(LinkedList<String> transactionHistory) {
+        this.transactionHistory = transactionHistory;
     }
 
     public String getAccountHolder() {
@@ -33,7 +45,8 @@ public class BankAccount {
             return;
         }
         balance += amount;
-        System.out.println("You deposited: " + balance);
+        transactionHistory.add("Deposited: " + amount);
+        System.out.println("You deposited: " + amount);
 
     }
 
@@ -45,6 +58,7 @@ public class BankAccount {
             throw new IllegalArgumentException("Insufficient funds. Cannot withdraw more than balance.");
         }else {
             balance -= amount;
+            transactionHistory.add("Withdraw: " + amount);
             System.out.println("You withdrew: " + amount);
         }
     }
@@ -53,4 +67,10 @@ public class BankAccount {
         System.out.printf("%s, your balance is: %.2f%n", accountHolder, balance);
     }
 
+    private void addTransaction(String entry) {
+        if (transactionHistory.size() == 10) {
+            transactionHistory.removeFirst(); // Remove oldest
+        }
+        transactionHistory.addLast(entry); // Add newest
+    }
 }
